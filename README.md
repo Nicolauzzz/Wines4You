@@ -20,20 +20,31 @@ This app leverages data from the [Sample APIs](https://sampleapis.com/api-list/w
 
 ## Screenshots 📸
 
-![Home Screen](https://github.com/user-attachments/assets/73604eb4-80d9-4b8e-8051-84e55fc75052)
+### Home Screen
+![Home Screen](https://github.com/user-attachments/assets/73604eb4-80d9-4b8e-8051-84e55fc75052 | width=300)
+
 *Explore wine categories.*
 
-![Favorites Screen](https://github.com/user-attachments/assets/4f3781a5-d9fa-4446-94da-aa779bee262f)
+### Favorites Screen
+![Favorites Screen](https://github.com/user-attachments/assets/4f3781a5-d9fa-4446-94da-aa779bee262f | width=300)
+
 *Manage your favorite wines.*
 
-![Profil Screen](https://github.com/user-attachments/assets/57975457-d386-46b9-9bd9-bfcb5e51605e)
+### Profile Screen
+![Profile Screen](https://github.com/user-attachments/assets/57975457-d386-46b9-9bd9-bfcb5e51605e | width=300)
+
 *View profile information.*
 
-![Wine Types](https://github.com/user-attachments/assets/97c6aa6c-bc42-4666-ba66-d7c2b2e7e388)
+### Wine Types
+![Wine Types](https://github.com/user-attachments/assets/97c6aa6c-bc42-4666-ba66-d7c2b2e7e388 | width=300)
+
 *Explore different wine types.*
 
-![Wines detail](https://github.com/user-attachments/assets/d56f4434-556b-435d-8699-a56c4dd77a0e)
+### Wine Detail Screen
+![Wine Detail](https://github.com/user-attachments/assets/d56f4434-556b-435d-8699-a56c4dd77a0e | width=300)
+
 *View detailed wine information.*
+
 
 ## Technologies Used ⚙️
 
@@ -42,5 +53,8 @@ This app leverages data from the [Sample APIs](https://sampleapis.com/api-list/w
 - **Expo:** A set of tools and services to help you develop React Native apps.
 - **Ionicons:** Icons used for navigation tabs.
 
-**License:** 📜
-   - The license section now mentions that the project is licensed under the **MIT License** with your name as the **license holder**: **Nicolauzzz**.
+## License 📜
+This project is licensed under the MIT License.
+
+License Holder: Nicolauzzz
+
