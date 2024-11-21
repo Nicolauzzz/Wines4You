@@ -21,12 +21,13 @@ This app leverages data from the [Sample APIs](https://sampleapis.com/api-list/w
 ## Screenshots 📸
 
 ### Home Screen
-![Home Screen](https://github.com/user-attachments/assets/73604eb4-80d9-4b8e-8051-84e55fc75052)
+![Home Screen](https://github.com/user-attachments/assets/47dbc524-e95e-4534-94c3-11608fe2c394)
 
 *Explore wine categories.*
 
 ### Favorites Screen
-![Favorites Screen](https://github.com/user-attachments/assets/4f3781a5-d9fa-4446-94da-aa779bee262f)
+![Favorites Screen](https://github.com/user-attachments/assets/8c01e02e-1e23-430a-9fff-2417226faa4e)
+
 
 *Manage your favorite wines.*
 
