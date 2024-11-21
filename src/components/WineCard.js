@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     wineName: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#2c3e50',
+        color: '#550000',
         marginBottom: 8,
     },
     detailContainer: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     location: {
         fontSize: 14,
-        color: '#2980b9',
+        color: '#800009',
     },
     ratingContainer: {
         flexDirection: 'row',

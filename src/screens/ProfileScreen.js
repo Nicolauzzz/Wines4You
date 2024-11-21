@@ -1,16 +1,28 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, Modal, TouchableOpacity } from 'react-native';
 
 const ProfileScreen = () => {
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const handleImagePress = () => {
+        setModalVisible(true);
+    };
+
+    const handleModalClose = () => {
+        setModalVisible(false);
+    };
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Image
-                    source={require('../../assets/app-logo.png')}
-                    style={styles.logo}
-                />
+                <TouchableOpacity onPress={handleImagePress}>
+                    <Image
+                        source={require('../../assets/app-logo.png')}
+                        style={styles.logo}
+                    />
+                </TouchableOpacity>
                 <Text style={styles.appName}>Wines4You</Text>
-                <Text style={styles.version}>Version 1.0.3</Text>
+                <Text style={styles.version}>Version 1.0.5</Text>
             </View>
 
             <View style={styles.section}>
@@ -50,6 +62,24 @@ const ProfileScreen = () => {
                     © 2024 Wines4You. All rights reserved.
                 </Text>
             </View>
+
+            {/* Modal for showing image in big mode */}
+            <Modal
+                visible={isModalVisible}
+                transparent={true}
+                animationType="fade"
+            >
+                <View style={styles.modalBackground}>
+                    <TouchableOpacity style={styles.closeButton} onPress={handleModalClose}>
+                        <Text style={styles.closeButtonText}>✕</Text>
+                    </TouchableOpacity>
+                    <Image
+                        source={require('../../assets/app-logo.png')}
+                        style={styles.modalImage}
+                        resizeMode="contain"
+                    />
+                </View>
+            </Modal>
         </ScrollView>
     );
 };
@@ -119,6 +149,25 @@ const styles = StyleSheet.create({
     copyright: {
         fontSize: 12,
         color: '#888',
+    },
+    modalBackground: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalImage: {
+        width: '100%',
+        height: '70%',
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 40,
+        right: 20,
+    },
+    closeButtonText: {
+        color: '#fff',
+        fontSize: 30,
     },
 });
 
