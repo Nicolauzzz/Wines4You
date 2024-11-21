@@ -58,8 +58,8 @@ const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerTitle}>Wine Odyssey</Text>
-                <Text style={styles.headerSubtitle}>Explore Exquisite Wines</Text>
+                <Text style={styles.headerTitle}>Wine Adventure</Text>
+                <Text style={styles.headerSubtitle}>Discover the Finest Wines</Text>
             </View>
             <FlatList
                 data={categories}
@@ -77,32 +77,35 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#D2B48C',
     },
     headerContainer: {
-        backgroundColor: '#3E2723',
-        paddingTop: 20,
-        paddingBottom: 20,
-        paddingHorizontal: 16,
-        marginBottom: 16,
+        padding: 7,
+        backgroundColor: '#550000', // Warna latar belakang header (maroon)
+        borderBottomLeftRadius: 100,
+        borderBottomRightRadius: 100,
+        alignItems: 'center', // Memusatkan teks
     },
     headerTitle: {
-        fontSize: 32,
-        fontWeight: '700',
-        color: '#FFFFFF',
-        marginBottom: 8,
-        letterSpacing: 1,
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#FFD700', // Warna teks gold
+        letterSpacing: 2, // Ruang antar huruf untuk efek elegan
+        marginBottom: 5, // Spasi antara judul dan subjudul
     },
     headerSubtitle: {
-        fontSize: 16,
-        color: '#FFFFFF',
-        opacity: 0.8,
+        fontSize: 18,
+        color: '#FFF5E1', // Warna teks light beige
+        fontStyle: 'italic',
+        marginBottom: 10,
     },
     listContainer: {
-        paddingHorizontal: 16,
+        padding: 10,
+        marginTop: 20,
     },
     columnWrapper: {
         justifyContent: 'space-between',
+        marginBottom: 20,
     },
     cardContainer: {
         width: (width - 48) / 2,

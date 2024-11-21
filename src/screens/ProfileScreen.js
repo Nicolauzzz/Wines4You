@@ -57,23 +57,24 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#F5F5DC',
     },
     header: {
         alignItems: 'center',
         padding: 24,
         borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        borderBottomColor: '#550000',
     },
     logo: {
         width: 100,
-        height: 100,
-        marginBottom: 16,
+        height: 125,
+        marginBottom: 5,
     },
     appName: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 4,
+        color: '#FFD700',
     },
     version: {
         fontSize: 14,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     section: {
         padding: 24,
         borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        borderBottomColor: '#090909',
     },
     sectionTitle: {
         fontSize: 20,

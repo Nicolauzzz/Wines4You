@@ -4,7 +4,7 @@ import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 const LoadingSpinner = ({ message = 'Loading...' }) => {
     return (
         <View style={styles.container}>
-            <ActivityIndicator size="large" color="#007AFF" />
+            <ActivityIndicator size="large" color="#fff" />
             {message && <Text style={styles.message}>{message}</Text>}
         </View>
     );
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#D2B48C',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     message: {
         marginTop: 10,
         fontSize: 16,
-        color: '#666',
+        color: '#550000',
     },
 });
 

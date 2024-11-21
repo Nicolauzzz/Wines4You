@@ -15,9 +15,33 @@ const Tab = createBottomTabNavigator();
 // HomeStack untuk navigasi stack di tab "Home"
 const HomeStack = () => (
     <Stack.Navigator>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Wines4You' }} />
-        <Stack.Screen name="WineList" component={WineListScreen} options={({ route }) => ({ title: route.params.category })} />
-        <Stack.Screen name="WineDetail" component={WineDetailScreen} options={{ title: 'Wine Details' }} />
+        <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{
+                title: 'Wines4You',
+                headerStyle: { backgroundColor: '#550000' }, // Warna latar belakang header
+                headerTintColor: '#F5F5DC', // Warna teks pada header
+            }}
+        />
+        <Stack.Screen
+            name="WineList"
+            component={WineListScreen}
+            options={({ route }) => ({
+                title: route.params.category,
+                headerStyle: { backgroundColor: '#550000' },
+                headerTintColor: '#F5F5DC',
+            })}
+        />
+        <Stack.Screen
+            name="WineDetail"
+            component={WineDetailScreen}
+            options={{
+                title: 'Wine Details',
+                headerStyle: { backgroundColor: '#550000' },
+                headerTintColor: '#F5F5DC',
+            }}
+        />
     </Stack.Navigator>
 );
 
@@ -27,16 +51,36 @@ const FavoritesStack = () => (
         <Stack.Screen
             name="FavoritesScreen"
             component={FavoritesScreen}
-            options={{ title: 'Wines4You' }}
+            options={{
+                title: 'Wines4You',
+                headerStyle: { backgroundColor: '#550000' },
+                headerTintColor: '#F5F5DC',
+            }}
         />
         <Stack.Screen
             name="WineDetail"
             component={WineDetailScreen}
-            options={{ title: 'Wine Details' }}
+            options={{
+                title: 'Wine Details',
+                headerStyle: { backgroundColor: '#550000' },
+                headerTintColor: '#F5F5DC',
+            }}
         />
     </Stack.Navigator>
 );
-
+const ProfileStack = () => (
+    <Stack.Navigator>
+        <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+            options={{
+                title: 'Profile',
+                headerStyle: { backgroundColor: '#550000' },
+                headerTintColor: '#F5F5DC',
+            }}
+        />
+    </Stack.Navigator>
+);
 const AppNavigator = () => (
     <NavigationContainer>
         <Tab.Navigator
@@ -52,20 +96,16 @@ const AppNavigator = () => (
                         iconName = focused ? 'person' : 'person-outline';
                     }
 
-                    // Return ikon sesuai nama dan ukuran
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: 'gray',
+                tabBarActiveTintColor: '#FFD700', // Warna aktif menggunakan kode heksadesimal
+                tabBarInactiveTintColor: '#FFF5E1', // Warna tidak aktif menggunakan kode heksadesimal
+                tabBarStyle: { backgroundColor: '#550000' }, // Navbar dengan warna putih
             })}
         >
             <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-            <Tab.Screen
-                name="Favorites"
-                component={FavoritesStack}
-                options={{ headerShown: false }}
-            />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen name="Favorites" component={FavoritesStack} options={{ headerShown: false }} />
+            <Tab.Screen name="Profile" component={ProfileStack} options={{ headerShown: false }} />
         </Tab.Navigator>
     </NavigationContainer>
 );

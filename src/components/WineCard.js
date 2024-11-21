@@ -1,14 +1,27 @@
-import React from 'react';
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Image, Text, StyleSheet, Animated } from 'react-native';
 
 const WineCard = ({ wine, onPress }) => {
+    const [scale] = useState(new Animated.Value(1)); // Initial scale is 1
+
+    // Function to trigger zoom-out effect
+    const zoomOutImage = () => {
+        Animated.timing(scale, {
+            toValue: 0.9, // Scale the image to 80%
+            duration: 300, // Duration of the animation
+            useNativeDriver: true, // Use native driver for performance
+        }).start();
+    };
+
     return (
         <TouchableOpacity style={styles.card} onPress={onPress}>
-            <Image
+            <Animated.Image
                 source={{ uri: wine.image }}
-                style={styles.image}
-                resizeMode="cover"
+                style={[styles.image, { transform: [{ scale }] }]} // Apply animated scale
+                resizeMode="contain"  // Prevent cropping, keep the entire image visible
+                onLoad={zoomOutImage}  // Trigger the zoom-out effect when image loads
             />
+
             <View style={styles.content}>
                 <Text style={styles.wineName} numberOfLines={2}>
                     {wine.wine}
@@ -49,7 +62,7 @@ const WineCard = ({ wine, onPress }) => {
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#F5F5DC',
         borderRadius: 12,
         marginBottom: 12,
         padding: 12,
@@ -64,7 +77,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 100,
-        height: 100,
+        height: 200,
         borderRadius: 8,
         marginRight: 12,
     },
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     ratingBadge: {
-        backgroundColor: '#ecf0f1',
+        backgroundColor: '#800000',
         borderRadius: 6,
         paddingVertical: 4,
         paddingHorizontal: 8,
@@ -111,7 +124,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     reviewBadge: {
-        backgroundColor: '#ecf0f1',
+        backgroundColor: '#800000',
         borderRadius: 6,
         paddingVertical: 4,
         paddingHorizontal: 8,
@@ -119,19 +132,19 @@ const styles = StyleSheet.create({
     },
     ratingLabel: {
         fontSize: 10,
-        color: '#7f8c8d',
+        color: '#F5F5DC',
         textTransform: 'uppercase',
         marginBottom: 2,
     },
     rating: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#f39c12',
+        color: '#FFD700',
     },
     reviews: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#2c3e50',
+        color: '#FFD700',
     },
 });
 

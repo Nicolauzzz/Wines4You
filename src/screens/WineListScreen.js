@@ -105,6 +105,7 @@ const WineListScreen = ({ route, navigation }) => {
                     <View style={styles.modalContent}>
                         <Text style={styles.modalTitle}>Filter Wines</Text>
 
+
                         {/* Origin Filter */}
                         <Text style={styles.filterLabel}>Origin</Text>
                         <TextInput
@@ -163,7 +164,7 @@ const WineListScreen = ({ route, navigation }) => {
     };
 
     if (loading) {
-        return <LoadingSpinner message="Loading wines..." />;
+        return <LoadingSpinner message="sabar yaa..." />;
     }
 
     return (
@@ -211,7 +212,23 @@ const WineListScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#D2B48C',
+    },
+    detailsWrapper: {
+        flexDirection: 'row',
+        padding: 16,
+        alignItems: 'center',
+        backgroundColor: '#F5F5DC',
+        borderRadius: 12,
+        margin: 16,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
     searchContainer: {
         flexDirection: 'row',
@@ -221,21 +238,21 @@ const styles = StyleSheet.create({
     searchInput: {
         flex: 1,
         height: 50,
-        borderColor: '#ddd',
+        borderColor: '#800000',
         borderWidth: 1,
         borderRadius: 10,
         paddingHorizontal: 15,
         marginRight: 10,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#ffffff',
         fontSize: 16,
     },
     filterButton: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#800000',
         padding: 12,
         borderRadius: 10,
     },
     filterButtonText: {
-        color: '#333',
+        color: '#FFF',
         fontWeight: 'bold',
     },
     listContainer: {
@@ -245,7 +262,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
     },
     emptyText: {
         fontSize: 16,
@@ -260,10 +276,24 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: '90%',
-        backgroundColor: 'white',
+        backgroundColor: '#D2B48C',
         borderRadius: 20,
         padding: 20,
         alignItems: 'center',
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: '#550000', // Close button color
+        padding: 8,
+        borderRadius: 50,
+        zIndex: 1, // Ensures it appears above the modal content
+    },
+    closeButtonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     modalTitle: {
         fontSize: 20,
@@ -278,7 +308,7 @@ const styles = StyleSheet.create({
     filterInput: {
         width: '100%',
         height: 50,
-        borderColor: '#ddd',
+        borderColor: '#550000',
         borderWidth: 1,
         borderRadius: 10,
         paddingHorizontal: 15,
@@ -292,17 +322,17 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     ratingButton: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#550000',
         padding: 10,
         borderRadius: 10,
         width: '18%',
         alignItems: 'center',
     },
     selectedRating: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#FFD700',
     },
     ratingText: {
-        color: '#333',
+        color: '#fff',
         fontWeight: 'bold',
     },
     modalButtonContainer: {
@@ -312,19 +342,20 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     modalButton: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         padding: 12,
         borderRadius: 10,
         width: '45%',
         alignItems: 'center',
     },
     applyButton: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#FFF',
     },
     modalButtonText: {
         fontWeight: 'bold',
         color: '#333',
     },
+
 });
 
 export default WineListScreen;
