@@ -2,6 +2,13 @@
 
 **Wines4You** is a React Native application designed to help users explore a variety of wines from different categories. It allows users to discover, save, and view details about their favorite wines. The app offers an easy-to-use interface with navigation to browse through different wine categories, read reviews, and manage their favorites list.
 
+**Color Palettes** 
+- *Maroon* (#550000)
+- *Gold* (#FFD700)
+- *Light Tan* (#D2B48C)
+- *Cream* (#FFF5E1)
+- *White* (#FFFFFF)
+
 ## Features 🌟
 
 - **Browse Wine Categories:** Explore a variety of wine categories including Red Wines, White Wines, Sparkling Wines, Rose Wines, Dessert Wines, and Port Wines, all sourced from the following APIs:
