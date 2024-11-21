@@ -20,6 +20,12 @@ This app leverages data from the [Sample APIs](https://sampleapis.com/api-list/w
 
 ## Screenshots 📸
 
+### LOGO Wines4You
+![LOGO](https://github.com/user-attachments/assets/349950a7-183b-408c-bfaf-9a348a844848)
+
+
+*LOGO nya cuyy*
+
 ### Home Screen
 ![Home Screen](https://github.com/user-attachments/assets/f53d85fa-2243-4b05-b71c-c76d9f0bed1a)
 
