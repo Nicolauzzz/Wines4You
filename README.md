@@ -2,6 +2,13 @@
 
 **Wines4You** is a React Native application designed to help users explore a variety of wines from different categories. It allows users to discover, save, and view details about their favorite wines. The app offers an easy-to-use interface with navigation to browse through different wine categories, read reviews, and manage their favorites list.
 
+**Color Palettes** 
+- *Maroon* (#550000)
+- *Gold* (#FFD700)
+- *Light Tan* (#D2B48C)
+- *Cream* (#FFF5E1)
+- *White* (#FFFFFF)
+
 ## Features 🌟
 
 - **Browse Wine Categories:** Explore a variety of wine categories including Red Wines, White Wines, Sparkling Wines, Rose Wines, Dessert Wines, and Port Wines, all sourced from the following APIs:
@@ -20,30 +27,44 @@ This app leverages data from the [Sample APIs](https://sampleapis.com/api-list/w
 
 ## Screenshots 📸
 
+### LOGO Wines4You
+![LOGO](https://github.com/user-attachments/assets/349950a7-183b-408c-bfaf-9a348a844848)
+
+
+*LOGO nya cuyy*
+
 ### Home Screen
-![Home Screen](https://github.com/user-attachments/assets/47dbc524-e95e-4534-94c3-11608fe2c394)
+![Home Screen](https://github.com/user-attachments/assets/f53d85fa-2243-4b05-b71c-c76d9f0bed1a)
+
 
 *Explore wine categories.*
 
 ### Favorites Screen
-![Favorites Screen](https://github.com/user-attachments/assets/8c01e02e-1e23-430a-9fff-2417226faa4e)
+![Favorites Screen](https://github.com/user-attachments/assets/4a7753d9-0537-4d9c-997c-6646f5112b0a)
 
 
 *Manage your favorite wines.*
 
 ### Profile Screen
-![Profile Screen](https://github.com/user-attachments/assets/57975457-d386-46b9-9bd9-bfcb5e51605e)
+![Profile Screen](https://github.com/user-attachments/assets/2c296488-c41d-422a-b1d5-7c354f17643a)
+
 
 *View profile information.*
 
+### Loading Screen
+![loading](https://github.com/user-attachments/assets/562e5963-7aaa-4e13-b419-46fc47231bfe)
+
+
+*Loading screen "sabar yaa...*
+
 ### Wine Types
-![Wine Types](https://github.com/user-attachments/assets/05f918bc-c947-425e-b21f-540281f007f4)
+![Wine Types](https://github.com/user-attachments/assets/326d5fcb-35a3-4299-8daf-6fa93da4a169)
 
 
 *Explore different wine types.*
 
 ### Wine Detail Screen
-![Wine Detail](https://github.com/user-attachments/assets/71d50e0c-6e0d-4d40-b3b8-34ae66dd81cd)
+![Wine Detail](https://github.com/user-attachments/assets/f387e96e-d8af-4305-b356-43434001746e)
 
 
 *View detailed wine information.*
