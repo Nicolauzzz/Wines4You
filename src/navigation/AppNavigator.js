@@ -21,6 +21,22 @@ const HomeStack = () => (
     </Stack.Navigator>
 );
 
+// Updated FavoritesStack to include WineDetail navigation
+const FavoritesStack = () => (
+    <Stack.Navigator>
+        <Stack.Screen
+            name="FavoritesScreen"
+            component={FavoritesScreen}
+            options={{ title: 'Wines4You' }}
+        />
+        <Stack.Screen
+            name="WineDetail"
+            component={WineDetailScreen}
+            options={{ title: 'Wine Details' }}
+        />
+    </Stack.Navigator>
+);
+
 const AppNavigator = () => (
     <NavigationContainer>
         <Tab.Navigator
@@ -44,7 +60,11 @@ const AppNavigator = () => (
             })}
         >
             <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-            <Tab.Screen name="Favorites" component={FavoritesScreen} />
+            <Tab.Screen
+                name="Favorites"
+                component={FavoritesStack}
+                options={{ headerShown: false }}
+            />
             <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     </NavigationContainer>

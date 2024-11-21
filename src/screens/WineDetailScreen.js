@@ -6,9 +6,12 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Alert
+    Alert,
+    Dimensions
 } from 'react-native';
 import { saveFavorite, removeFavorite, isFavorite } from '../utils/storage';
+
+const { width } = Dimensions.get('window');
 
 const WineDetailScreen = ({ route }) => {
     const { wine } = route.params;
@@ -38,37 +41,45 @@ const WineDetailScreen = ({ route }) => {
     };
 
     return (
-        <ScrollView style={styles.container}>
-            <Image
-                source={{ uri: wine.image }}
-                style={styles.image}
-                resizeMode="cover"
-            />
-            <View style={styles.contentContainer}>
-                <Text style={styles.wineName}>{wine.wine}</Text>
-                <Text style={styles.winery}>{wine.winery}</Text>
-                <Text style={styles.location}>{wine.location}</Text>
-
-                <View style={styles.ratingContainer}>
-                    <Text style={styles.ratingText}>
-                        Rating: {wine.rating.average} ★
-                    </Text>
-                    <Text style={styles.reviewsText}>
-                        ({wine.rating.reviews})
-                    </Text>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.contentContainer}
+        >
+            <View style={styles.detailsWrapper}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        source={{ uri: wine.image }}
+                        style={styles.image}
+                        resizeMode="contain"
+                    />
                 </View>
 
-                <TouchableOpacity
-                    style={[
-                        styles.favoriteButton,
-                        isFavorited && styles.favoriteButtonActive
-                    ]}
-                    onPress={handleFavoritePress}
-                >
-                    <Text style={styles.favoriteButtonText}>
-                        {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
-                    </Text>
-                </TouchableOpacity>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.wineName}>{wine.wine}</Text>
+                    <Text style={styles.winery}>{wine.winery}</Text>
+                    <Text style={styles.location}>{wine.location}</Text>
+
+                    <View style={styles.ratingContainer}>
+                        <Text style={styles.ratingText}>
+                            Rating: {wine.rating.average} ★
+                        </Text>
+                        <Text style={styles.reviewsText}>
+                            ({wine.rating.reviews})
+                        </Text>
+                    </View>
+
+                    <TouchableOpacity
+                        style={[
+                            styles.favoriteButton,
+                            isFavorited && styles.favoriteButtonActive
+                        ]}
+                        onPress={handleFavoritePress}
+                    >
+                        <Text style={styles.favoriteButtonText}>
+                            {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ScrollView>
     );
@@ -79,12 +90,28 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    image: {
-        width: '100%',
-        height: 300,
-    },
     contentContainer: {
+        flexGrow: 1,
+        justifyContent: 'top',
+    },
+    detailsWrapper: {
+        flexDirection: 'row',
         padding: 16,
+        alignItems: 'center',
+    },
+    imageContainer: {
+        width: '40%',
+        aspectRatio: 0.75,
+        marginRight: 16,
+    },
+    image: {
+        flex: 1,
+        width: undefined,
+        height: undefined,
+    },
+    infoContainer: {
+        flex: 1,
+        justifyContent: 'center',
     },
     wineName: {
         fontSize: 24,
