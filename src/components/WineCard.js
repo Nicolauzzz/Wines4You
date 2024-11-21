@@ -10,12 +10,36 @@ const WineCard = ({ wine, onPress }) => {
                 resizeMode="cover"
             />
             <View style={styles.content}>
-                <Text style={styles.wineName}>{wine.wine}</Text>
-                <Text style={styles.winery}>{wine.winery}</Text>
-                <Text style={styles.location}>{wine.location}</Text>
-                <View style={styles.ratingContainer}>
-                    <Text style={styles.rating}>{wine.rating.average} ★</Text>
-                    <Text style={styles.reviews}>{wine.rating.reviews}</Text>
+                <Text style={styles.wineName} numberOfLines={2}>
+                    {wine.wine}
+                </Text>
+                <View style={styles.detailContainer}>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.labelText}>Winery</Text>
+                        <Text style={styles.winery} numberOfLines={1}>
+                            {wine.winery}
+                        </Text>
+                    </View>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.labelText}>Origin</Text>
+                        <Text style={styles.location} numberOfLines={1}>
+                            {wine.location}
+                        </Text>
+                    </View>
+                    <View style={styles.ratingContainer}>
+                        <View style={styles.ratingBadge}>
+                            <Text style={styles.ratingLabel}>Rating</Text>
+                            <Text style={styles.rating}>
+                                {wine.rating.average} ★
+                            </Text>
+                        </View>
+                        <View style={styles.reviewBadge}>
+                            <Text style={styles.ratingLabel}>Reviews</Text>
+                            <Text style={styles.reviews}>
+                                {wine.rating.reviews}
+                            </Text>
+                        </View>
+                    </View>
                 </View>
             </View>
         </TouchableOpacity>
@@ -25,56 +49,89 @@ const WineCard = ({ wine, onPress }) => {
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
-        borderRadius: 8,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 12,
         marginBottom: 12,
         padding: 12,
-        elevation: 2,
+        elevation: 3,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
     image: {
-        width: 80,
-        height: 80,
-        borderRadius: 4,
+        width: 100,
+        height: 100,
+        borderRadius: 8,
+        marginRight: 12,
     },
     content: {
         flex: 1,
-        marginLeft: 12,
+        justifyContent: 'space-between',
     },
     wineName: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 4,
+        color: '#2c3e50',
+        marginBottom: 8,
+    },
+    detailContainer: {
+        flex: 1,
+    },
+    labelContainer: {
+        marginBottom: 6,
+    },
+    labelText: {
+        fontSize: 10,
+        color: '#7f8c8d',
+        textTransform: 'uppercase',
+        marginBottom: 2,
     },
     winery: {
         fontSize: 14,
-        color: '#666',
-        marginBottom: 2,
+        color: '#34495e',
     },
     location: {
-        fontSize: 12,
-        color: '#888',
-        marginBottom: 4,
+        fontSize: 14,
+        color: '#2980b9',
     },
     ratingContainer: {
         flexDirection: 'row',
+        marginTop: 8,
+    },
+    ratingBadge: {
+        backgroundColor: '#ecf0f1',
+        borderRadius: 6,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        marginRight: 8,
         alignItems: 'center',
+    },
+    reviewBadge: {
+        backgroundColor: '#ecf0f1',
+        borderRadius: 6,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        alignItems: 'center',
+    },
+    ratingLabel: {
+        fontSize: 10,
+        color: '#7f8c8d',
+        textTransform: 'uppercase',
+        marginBottom: 2,
     },
     rating: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#FFD700',
-        marginRight: 4,
+        color: '#f39c12',
     },
     reviews: {
-        fontSize: 12,
-        color: '#888',
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#2c3e50',
     },
 });
 

@@ -10,7 +10,7 @@ const ProfileScreen = () => {
                     style={styles.logo}
                 />
                 <Text style={styles.appName}>Wines4You</Text>
-                <Text style={styles.version}>Version 1.0.0</Text>
+                <Text style={styles.version}>Version 1.0.3</Text>
             </View>
 
             <View style={styles.section}>

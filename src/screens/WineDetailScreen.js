@@ -56,29 +56,45 @@ const WineDetailScreen = ({ route }) => {
 
                 <View style={styles.infoContainer}>
                     <Text style={styles.wineName}>{wine.wine}</Text>
-                    <Text style={styles.winery}>{wine.winery}</Text>
-                    <Text style={styles.location}>{wine.location}</Text>
+
+                    <View style={styles.detailSection}>
+                        <Text style={styles.labelText}>Winery</Text>
+                        <Text style={styles.winery}>{wine.winery}</Text>
+                    </View>
+
+                    <View style={styles.detailSection}>
+                        <Text style={styles.labelText}>Origin</Text>
+                        <Text style={styles.location}>{wine.location}</Text>
+                    </View>
 
                     <View style={styles.ratingContainer}>
-                        <Text style={styles.ratingText}>
-                            Rating: {wine.rating.average} ★
-                        </Text>
-                        <Text style={styles.reviewsText}>
-                            ({wine.rating.reviews})
-                        </Text>
+                        <View style={styles.ratingBadge}>
+                            <Text style={styles.ratingLabel}>Rating</Text>
+                            <Text style={styles.ratingText}>
+                                {wine.rating.average} ★
+                            </Text>
+                        </View>
+                        <View style={styles.reviewBadge}>
+                            <Text style={styles.ratingLabel}>Reviews</Text>
+                            <Text style={styles.reviewsText}>
+                                {wine.rating.reviews}
+                            </Text>
+                        </View>
                     </View>
 
                     <TouchableOpacity
                         style={[
-                            styles.favoriteButton,
-                            isFavorited && styles.favoriteButtonActive
+                            styles.favoriteButtonCircular,
+                            isFavorited ? styles.favoriteButtonActiveCircular : styles.favoriteButtonInactiveCircular,
                         ]}
                         onPress={handleFavoritePress}
                     >
-                        <Text style={styles.favoriteButtonText}>
-                            {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
-                        </Text>
+                        <View style={styles.innerCircle}>
+                            <Text style={styles.iconSymbol}>{isFavorited ? '♥' : '♡'}</Text>
+                        </View>
                     </TouchableOpacity>
+
+
                 </View>
             </View>
         </ScrollView>
@@ -88,7 +104,7 @@ const WineDetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f9f9f9',
     },
     contentContainer: {
         flexGrow: 1,
@@ -98,6 +114,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 16,
         alignItems: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        margin: 16,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
     imageContainer: {
         width: '40%',
@@ -116,46 +143,90 @@ const styles = StyleSheet.create({
     wineName: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 8,
+        color: '#2c3e50',
+        marginBottom: 16,
+    },
+    detailSection: {
+        marginBottom: 12,
+    },
+    labelText: {
+        fontSize: 10,
+        color: '#7f8c8d',
+        textTransform: 'uppercase',
+        marginBottom: 4,
     },
     winery: {
-        fontSize: 18,
-        color: '#666',
-        marginBottom: 4,
+        fontSize: 16,
+        color: '#34495e',
     },
     location: {
         fontSize: 16,
-        color: '#888',
-        marginBottom: 16,
+        color: '#2980b9',
     },
     ratingContainer: {
         flexDirection: 'row',
+        marginBottom: 16,
+    },
+    ratingBadge: {
+        backgroundColor: '#ecf0f1',
+        borderRadius: 6,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        marginRight: 12,
         alignItems: 'center',
-        marginBottom: 24,
+    },
+    reviewBadge: {
+        backgroundColor: '#ecf0f1',
+        borderRadius: 6,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        alignItems: 'center',
+    },
+    ratingLabel: {
+        fontSize: 10,
+        color: '#7f8c8d',
+        textTransform: 'uppercase',
+        marginBottom: 4,
     },
     ratingText: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
-        marginRight: 8,
+        color: '#f39c12',
     },
     reviewsText: {
         fontSize: 16,
-        color: '#666',
-    },
-    favoriteButton: {
-        backgroundColor: '#007AFF',
-        padding: 16,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    favoriteButtonActive: {
-        backgroundColor: '#FF3B30',
-    },
-    favoriteButtonText: {
-        color: '#fff',
-        fontSize: 16,
         fontWeight: 'bold',
+        color: '#2c3e50',
     },
+    favoriteButtonCircular: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 60,
+        height: 60,
+        borderRadius: 30, // Lingkaran
+        elevation: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+    },
+    favoriteButtonInactiveCircular: {
+        backgroundColor: '#c3c3ca', // Warna biru lembut untuk status belum favorit
+    },
+    favoriteButtonActiveCircular: {
+        backgroundColor: '#FF6B6B', // Warna merah lembut untuk status favorit
+    },
+    innerCircle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    iconSymbol: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#fff', // Simbol tetap putih untuk kontras
+    },
+
+
 });
 
 export default WineDetailScreen;
