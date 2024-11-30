@@ -6,8 +6,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    Modal,
-    ScrollView
+    Modal
 } from 'react-native';
 import { fetchWines } from '../api/wineApi';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -19,6 +18,8 @@ const WineListScreen = ({ route, navigation }) => {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [filterModalVisible, setFilterModalVisible] = useState(false);
+    const [sortModalVisible, setSortModalVisible] = useState(false);
+    const [sortOption, setSortOption] = useState('nameAsc');
     const [filters, setFilters] = useState({
         origin: '',
         minRating: 0,
@@ -31,8 +32,8 @@ const WineListScreen = ({ route, navigation }) => {
     }, []);
 
     useEffect(() => {
-        applyFilters();
-    }, [searchQuery, filters, wines]);
+        applyFiltersAndSorting();
+    }, [searchQuery, filters, sortOption, wines]);
 
     const loadWines = async () => {
         try {
@@ -46,8 +47,8 @@ const WineListScreen = ({ route, navigation }) => {
         }
     };
 
-    const applyFilters = () => {
-        let result = wines;
+    const applyFiltersAndSorting = () => {
+        let result = [...wines];
 
         // Text search filter
         if (searchQuery) {
@@ -65,7 +66,6 @@ const WineListScreen = ({ route, navigation }) => {
         }
 
         // Rating filter
-        // Rating filter berdasarkan jumlah ulasan
         if (filters.minRating > 0) {
             result = result.filter(wine => {
                 const reviewsCount = parseInt(wine.rating.reviews.replace(/\D+/g, ''), 10);
@@ -73,13 +73,28 @@ const WineListScreen = ({ route, navigation }) => {
             });
         }
 
-
         // Winery filter
         if (filters.winery) {
             result = result.filter(wine =>
                 wine.winery.toLowerCase().includes(filters.winery.toLowerCase())
             );
         }
+
+        // Sorting
+        result.sort((a, b) => {
+            switch (sortOption) {
+                case 'nameAsc':
+                    return a.wine.localeCompare(b.wine);
+                case 'nameDesc':
+                    return b.wine.localeCompare(a.wine);
+                case 'wineryAsc':
+                    return a.winery.localeCompare(b.winery);
+                case 'wineryDesc':
+                    return b.winery.localeCompare(a.winery);
+                default:
+                    return 0;
+            }
+        });
 
         setFilteredWines(result);
     };
@@ -93,6 +108,78 @@ const WineListScreen = ({ route, navigation }) => {
         setSearchQuery('');
     };
 
+    const renderSortModal = () => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={sortModalVisible}
+                onRequestClose={() => setSortModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalTitle}>Sort Wines</Text>
+
+                        <TouchableOpacity
+                            style={[
+                                styles.sortOption,
+                                sortOption === 'nameAsc' && styles.selectedSortOption
+                            ]}
+                            onPress={() => {
+                                setSortOption('nameAsc');
+                                setSortModalVisible(false);
+                            }}
+                        >
+                            <Text style={styles.sortOptionText}>Wine Name (A-Z)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[
+                                styles.sortOption,
+                                sortOption === 'nameDesc' && styles.selectedSortOption
+                            ]}
+                            onPress={() => {
+                                setSortOption('nameDesc');
+                                setSortModalVisible(false);
+                            }}
+                        >
+                            <Text style={styles.sortOptionText}>Wine Name (Z-A)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[
+                                styles.sortOption,
+                                sortOption === 'wineryAsc' && styles.selectedSortOption
+                            ]}
+                            onPress={() => {
+                                setSortOption('wineryAsc');
+                                setSortModalVisible(false);
+                            }}
+                        >
+                            <Text style={styles.sortOptionText}>Winery (A-Z)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[
+                                styles.sortOption,
+                                sortOption === 'wineryDesc' && styles.selectedSortOption
+                            ]}
+                            onPress={() => {
+                                setSortOption('wineryDesc');
+                                setSortModalVisible(false);
+                            }}
+                        >
+                            <Text style={styles.sortOptionText}>Winery (Z-A)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.closeModalButton}
+                            onPress={() => setSortModalVisible(false)}
+                        >
+                            <Text style={styles.closeModalButtonText}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+        );
+    };
+
     const renderFilterModal = () => {
         return (
             <Modal
@@ -104,45 +191,43 @@ const WineListScreen = ({ route, navigation }) => {
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                         <Text style={styles.modalTitle}>Filter Wines</Text>
-
-
-                        {/* Origin Filter */}
+                        {/* Filters */}
                         <Text style={styles.filterLabel}>Origin</Text>
                         <TextInput
                             style={styles.filterInput}
                             placeholder="Enter country or region"
                             value={filters.origin}
-                            onChangeText={(text) => setFilters(prev => ({...prev, origin: text}))}
+                            onChangeText={(text) =>
+                                setFilters(prev => ({ ...prev, origin: text }))
+                            }
                         />
-
-                        {/* Rating Filter */}
                         <Text style={styles.filterLabel}>Minimum Reviews</Text>
                         <View style={styles.ratingContainer}>
-                            {[10, 50, 100, 500].map((reviews) => (
+                            {[10, 50, 100, 500].map(reviews => (
                                 <TouchableOpacity
                                     key={reviews}
                                     style={[
                                         styles.ratingButton,
-                                        filters.minRating === reviews && styles.selectedRating
+                                        filters.minRating === reviews &&
+                                        styles.selectedRating
                                     ]}
-                                    onPress={() => setFilters(prev => ({ ...prev, minRating: reviews }))}
+                                    onPress={() =>
+                                        setFilters(prev => ({ ...prev, minRating: reviews }))
+                                    }
                                 >
                                     <Text style={styles.ratingText}>{reviews}+</Text>
                                 </TouchableOpacity>
                             ))}
                         </View>
-
-
-                        {/* Winery Filter */}
                         <Text style={styles.filterLabel}>Winery</Text>
                         <TextInput
                             style={styles.filterInput}
                             placeholder="Enter winery name"
                             value={filters.winery}
-                            onChangeText={(text) => setFilters(prev => ({...prev, winery: text}))}
+                            onChangeText={(text) =>
+                                setFilters(prev => ({ ...prev, winery: text }))
+                            }
                         />
-
-                        {/* Modal Buttons */}
                         <View style={styles.modalButtonContainer}>
                             <TouchableOpacity
                                 style={styles.modalButton}
@@ -176,7 +261,6 @@ const WineListScreen = ({ route, navigation }) => {
                     placeholderTextColor="#888"
                     value={searchQuery}
                     onChangeText={setSearchQuery}
-                    clearButtonMode="while-editing"
                 />
                 <TouchableOpacity
                     style={styles.filterButton}
@@ -184,8 +268,13 @@ const WineListScreen = ({ route, navigation }) => {
                 >
                     <Text style={styles.filterButtonText}>Filters</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.sortButton}
+                    onPress={() => setSortModalVisible(true)}
+                >
+                    <Text style={styles.sortButtonText}>Sort</Text>
+                </TouchableOpacity>
             </View>
-
             {filteredWines.length === 0 ? (
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyText}>No wines found</Text>
@@ -196,15 +285,17 @@ const WineListScreen = ({ route, navigation }) => {
                     renderItem={({ item }) => (
                         <WineCard
                             wine={item}
-                            onPress={() => navigation.navigate('WineDetail', { wine: item })}
+                            onPress={() =>
+                                navigation.navigate('WineDetail', { wine: item })
+                            }
                         />
                     )}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={item => item.id.toString()}
                     contentContainerStyle={styles.listContainer}
                 />
             )}
-
             {renderFilterModal()}
+            {renderSortModal()}
         </View>
     );
 };
@@ -354,6 +445,40 @@ const styles = StyleSheet.create({
     modalButtonText: {
         fontWeight: 'bold',
         color: '#333',
+    },
+    sortButton: {
+        backgroundColor: '#800000',
+        padding: 12,
+        borderRadius: 10,
+        marginLeft: 10,
+    },
+    sortButtonText: {
+        color: '#FFF',
+        fontWeight: 'bold',
+    },
+    sortOption: {
+        width: '100%',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+    },
+    selectedSortOption: {
+        backgroundColor: '#FFD700',
+    },
+    sortOptionText: {
+        textAlign: 'center',
+        fontSize: 16,
+    },
+    closeModalButton: {
+        marginTop: 20,
+        padding: 15,
+        backgroundColor: '#550000',
+        borderRadius: 10,
+    },
+    closeModalButtonText: {
+        color: '#FFF',
+        textAlign: 'center',
+        fontSize: 16,
     },
 
 });
